@@ -5,32 +5,27 @@
 	</div>
 	<div id="search">
 		<p class="priority">
-			探索レベル：<span class="" data-priority=1>1</span>
-			<span class="" data-priority=2>2</span>
-			<span class="" data-priority=3>3</span>
-			<span class="" data-priority=4>4</span>
-			<span class="" data-priority=5>5</span>
-			<span class="" data-priority=6>6</span>
-		</p>
-		<ul class="tags">
+			探索レベル：<span class="search-post selected" data-priority="">ALL</span><span class="search-post" data-priority=1>1</span><span class="search-post" data-priority=2>2</span><span class="search-post" data-priority=3>3</span><span class="search-post" data-priority=4>4</span><span class="search-post" data-priority=5>5</span><span class="search-post" data-priority=6>6</span></p>
+		<p class="tags">
+		絞込タグ(タグ同士はOR検索)：
 		<?php foreach ( $tags as $tag ): ?>
-			<li><span class="" data-tag="<?php echo $tag['id'] ?>"><?php echo $tag['name'] ?></span></li>
+		<span class="search-post" data-tag="<?php echo $tag['id'] ?>"><?php echo $tag['name'] ?></span>
 		<?php endforeach; ?>
-		</ul>
+		</p>
 	</div>
 	<div id="pages">
-		<p class="count"><?php echo $count; ?>件 / <?php echo $endTime;?>終了予定</p>
+		<p class="pages-info">調査件数：<span class="page-count"><?php echo $count; ?></span>件 / 終了予定は <span class="end-time"><?php echo $endTime;?></span> です</p>
 		<table>
 			<thead>
 				<tr><th>title</th><th>url</th><th>優先度</th></tr>
 			</thead>
-		<?php foreach ( $pages as $page ): ?>
-			<tr>
 			<tbody>
+			<?php foreach ( $pages as $page ): ?>
+			<tr>
 				<td><?php echo $page['title'] ?></td><td><?php echo $site['url'].$page['url'] ?></td><td><?php echo $page['priority']?></td>
 			</tr>
+			<?php endforeach; ?>
 			</tbody>
-		<?php endforeach; ?>
 		</table>
 	</div>
 </div>

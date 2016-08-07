@@ -91,9 +91,25 @@ body {
 	padding:10px 0 0 0;
 }
 
+#search .priority .search-post {
+	padding: 2px 16px;
+	cursor: pointer;
+}
+#search .priority .search-post:hover {
+	font-weight: bold;
+}
+#search .priority .search-post.selected {
+    background-color: #75c0d2;
+}
 
+#search .tags .search-post {
+	padding: 2px 16px;
+	cursor: pointer;
+}
+#search .tags .search-post.selected {
+    background-color: #fdde81;
 
-
+}
 
 
 

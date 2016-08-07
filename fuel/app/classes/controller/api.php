@@ -2,12 +2,25 @@
 
 class Controller_Api extends Controller_Base
 {
-	public function post_page_search()
+	public function post_search_page()
 	{
+		$res = [
+			"ok" => true,
+		];
 		$post = Input::post();
-		var_dump($post);die;
+		$priority = null;
+		$tags = [];
+		if (isset($post['priority']) && $post['priority'] !== null && $post['priority'] !== "") {
+			$priority = $post['priority'];
+		}
+		if ( isset($post['tags']) && is_array($post['tags']) && count($post['tags']) > 0 ) {
+			$tags = $post['tags'];
+		}
 
-		$res = Service_Search::getPages($this->site_id,5,[]);
-		var_dump($res);die;
+		$res['page'] = Service_Search::getPages($this->site_id,$priority,$tags);
+
+		$sec = floor(count($res['page']) * ($this->sleep) * 1.05);
+		$res['endTime'] = date('m月d日 H時i分',strtotime("+{$sec} second"));
+		return $this->response($res);
 	}
 }

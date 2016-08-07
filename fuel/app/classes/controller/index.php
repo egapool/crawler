@@ -2,9 +2,6 @@
 
 class Controller_Index extends Controller_Base
 {
-	public $site_id = 1;
-	public $sleep = 0.5; // sec
-
 	public function action_index()
 	{
 		$v['site']  = Model_Site::fetchSite($this->site_id);
