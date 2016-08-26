@@ -10,7 +10,6 @@
 	<div id="app" class="clearfix">
 		<div id="side" class="left">
 			<ul>
-				<li><a href="/?site=http://check.fuzoku.jp">CHECK.FUZOKU.JP</a></li>
 			</ul>
 		</div>
 		<?php echo $content; ?>
