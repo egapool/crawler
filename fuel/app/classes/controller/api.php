@@ -10,10 +10,11 @@ class Controller_Api extends Controller_Base
 		$post = Input::post();
 		$priority = null;
 		$tags = [];
+		$freeWord = [];
 
-		list($priority,$tags) = Service_Search::filterRequest($post);
+		list($priority,$tags,$freeWord) = Service_Search::filterRequest($post);
 
-		$res['page'] = Service_Search::getPages($this->site['id'],$priority,$tags);
+		$res['page'] = Service_Search::getPages($this->site['id'],$priority,$tags,$freeWord);
 
 		$sec = floor(count($res['page']) * ($this->sleep) * 1.05);
 		$res['endTime'] = date('m月d日 H時i分',strtotime("+{$sec} second"));
@@ -25,10 +26,10 @@ class Controller_Api extends Controller_Base
 		$post = Input::post();
 		$urls = [];
 		$priority = null;
-		$tags = [];
+		$freeWord = [];
 
-		list($priority,$tags) = Service_Search::filterRequest($post);
-		$pages = Service_Search::getPages($this->site['id'],$priority,$tags);
+		list($priority,$tags,$freeWord) = Service_Search::filterRequest($post);
+		$pages = Service_Search::getPages($this->site['id'],$priority,$tags,$freeWord);
 		if ( count($pages) != 0 ) {
 			// historyにインサート
 			$resp = \DB::insert('histories')->set([

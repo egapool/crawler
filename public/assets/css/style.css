@@ -74,6 +74,7 @@ body {
 	color: #FFF;
 	height: 100%;
 	margin:0 10px 0 0;
+	position: fixed;
 }
 #side a {
 }
@@ -91,7 +92,8 @@ body {
 #main {
 	box-sizing: border-box;
 	padding:10px 0 0 0;
-    width: 87%;
+    width: 100%;
+	padding-left: 13%;
 }
 
 #search .priority .search-post {
@@ -141,4 +143,12 @@ div#siteInfo {
 
 .history-detail .table {
 	font-size:12px;
+}
+
+.free-word input{
+	padding: 3px 5px;
+	border-radius: 3px;
+	border: 1px solid #ccc;
+	width: 50%;
+	margin: 5px 0px;
 }

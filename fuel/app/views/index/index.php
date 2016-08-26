@@ -1,4 +1,7 @@
 <div id="main" class="left">
+	<?php if ( !isset($site)): ?>
+        ←サイトを選んでね！
+    <?php else: ?>
 	<div id="siteInfo">
 		<span class="name"><?php echo $site['name'] ?></span>
 		<span class="url"><?php echo $site['url'] ?></span>
@@ -12,6 +15,9 @@
 		<span class="search-post" data-tag="<?php echo $tag['id'] ?>"><?php echo $tag['name'] ?></span>
 		<?php endforeach; ?>
 		</p>
+		<p class="free-word">
+			<input class="search-post" type="text" name="freetext" value="" placeholder="絞込みフリーワード(URL)">
+		</p>
 	</div>
 	<div id="pages">
 		<p class="pages-info">調査件数：<span class="page-count"><?php echo $count; ?></span>件 / 終了予定は <span class="end-time"><?php echo $endTime;?></span> です</p>
@@ -24,11 +30,14 @@
 				<tbody>
 				<?php foreach ( $pages as $page ): ?>
 				<tr>
-					<td><?php echo $page['title'] ?></td><td><?php echo $site['url'].$page['url'] ?></td><td><?php echo $page['priority']?></td>
+					<td><?php echo $page['title'] ?></td>
+					<td><?php echo $site['url'].$page['url'] ?></td>
+					<td style="color:#dac41f;"><?php for($i=0;$i<$page['priority'];$i++): ?>★<?php endfor; ?></td>
 				</tr>
 				<?php endforeach; ?>
 				</tbody>
 			</table>
 		</div>
 	</div>
+	<?php endif; ?>
 </div>

@@ -2,14 +2,21 @@
 
 class Service_Search
 {
-	public static function getPages($site_id,$priority = null,$tags = [])
+	public static function getPages($site_id,$priority = null,$tags = [],$freeWord= [])
 	{
 		$params = ['site_id'=>$site_id];
 
 		$priSql = "";
+		$wordSql = "";
 		if ( !is_null($priority) ) {
 			$params += ['priority' => $priority];
 			$priSql = "AND priority <= :priority";
+		}
+
+		if ( !empty($freeWord) && is_array($freeWord)) {
+			foreach ( $freeWord as $word ) {
+				$wordSql .= " AND url like '%".$word."%'";
+			}
 		}
 
 		$tagSql = "";
@@ -37,6 +44,7 @@ class Service_Search
 		$sql .= "where" . PHP_EOL;
 		$sql .= "    site_id = :site_id" . PHP_EOL;
 		$sql .= $priSql . PHP_EOL;
+		$sql .= $wordSql . PHP_EOL;
 
 		return DB::query($sql)->parameters($params)->execute()->as_array();
 	}
@@ -51,12 +59,16 @@ class Service_Search
 	{
 		$priority = null;
 		$tags = [];
+		$freeWord = [];
 		if (isset($post['priority']) && $post['priority'] !== null && $post['priority'] !== "") {
 			$priority = $post['priority'];
 		}
 		if ( isset($post['tags']) && is_array($post['tags']) && count($post['tags']) > 0 ) {
 			$tags = $post['tags'];
 		}
-		return [$priority, $tags];
+		if ( isset($post['freeWord']) && is_array($post['freeWord']) && count($post['freeWord']) > 0 ) {
+			$freeWord = $post['freeWord'];
+		}
+		return [$priority, $tags,$freeWord];
 	}
 }

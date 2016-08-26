@@ -16,6 +16,7 @@ function myAjax(url,data) {
 $(function(){
   var data = {};
   data.tags = [];
+  data.freeWord = [];
 
   $('#search .priority .search-post').click(function(){
     data.priority = $(this).data('priority');
@@ -41,6 +42,15 @@ $(function(){
     App.WebAPI.searchPage(data);
   });
 
+  $('#search .free-word .search-post').keyup(function(e){
+      var freeWord = $(this).val();
+      // スペース区切り
+      data.freeWord = [];
+      data.freeWord.push(freeWord);
+      console.log(data);
+      App.WebAPI.searchPage(data);
+  });
+
   $('#go').click(function(){
       // DOM入れ替え
       $('#result-table').html('クローリング中だよ');
@@ -58,7 +68,7 @@ App.WebAPI.searchPage = function(data){
     dataType: "json",
     data: data
   }).done(function( msg ) {
-    var $table = $('#pages table tbody');
+    var $table = $('#result-table table tbody');
     $table.html("");
     var count = msg.page.length;
     $('.page-count').html(count);
@@ -79,6 +89,7 @@ App.WebAPI.goCrawle = function(data){
     dataType: "json",
     data: data
   }).done(function( msg ) {
+      $('#result-table').html('<a href="/history/'+msg.history_id+'" target="_blank">結果だよ</a>');
     console.log(msg);
   }).fail(function( msg){
     console.log(msg);

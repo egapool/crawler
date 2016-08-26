@@ -1,4 +1,7 @@
 <div id="main" class="left">
+    <?php if ( !isset($site)): ?>
+        サイトを選んでね！
+    <?php else: ?>
     <div id="siteInfo">
 		<span class="name"><?php echo $site['name'] ?></span>
 		<span class="url"><?php echo $site['url'] ?></span>
@@ -33,4 +36,5 @@
         <?php endforeach; ?>
         </tbody>
     </table>
+    <?php endif; ?>
 </div>
