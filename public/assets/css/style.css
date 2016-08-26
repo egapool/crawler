@@ -67,7 +67,8 @@ body {
 	height:100%;
 }
 #side {
-	width: 180px;
+	box-sizing: border-box;
+	width: 12%;
 	padding: 20px 0px;
 	background-color: #4d394b;
 	color: #FFF;
@@ -88,7 +89,9 @@ body {
 }
 
 #main {
+	box-sizing: border-box;
 	padding:10px 0 0 0;
+    width: 87%;
 }
 
 #search .priority .search-post {
@@ -111,29 +114,31 @@ body {
 
 }
 
+p#go {
+    width: 200px;
+    background-color: #fff700;
+    text-align: center;
+    padding: 5px;
+    border-radius: 3px;
+    color: #965c11;
+    cursor: pointer;
+}
+p#go:hover {
+	font-weight: bold;
+}
 
+div#siteInfo {
+    background-color: #4d394b;
+    margin: 0 0 10px 0;
+    padding: 5px;
+    color: #fff;
+    border-radius: 3px;
+}
+.table tr td {
+	border:1px solid #ccc;
+	padding:5px 5px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.history-detail .table {
+	font-size:12px;
+}

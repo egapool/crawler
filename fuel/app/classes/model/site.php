@@ -7,4 +7,10 @@ class Model_Site extends \Model
 		$sql = "SELECT * FROM sites WHERE id = :site_id";
 		return DB::query($sql)->parameters(['site_id'=>$site_id])->execute()->current();
 	}
+
+	static public function fetchSiteByUrl($url)
+	{
+		$sql = "SELECT * FROM sites WHERE url = :url";
+		return DB::query($sql)->parameters(['url'=>$url])->execute()->current();
+	}
 }

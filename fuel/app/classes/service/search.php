@@ -40,4 +40,23 @@ class Service_Search
 
 		return DB::query($sql)->parameters($params)->execute()->as_array();
 	}
+
+	/**
+	 * ページサーチのPOSTリクエストをサーバーで扱う形にフィルター
+	 * @param  array $post input::post
+	 * @return array priority and tags
+	 * @author egami
+	 */
+	public static function filterRequest($post)
+	{
+		$priority = null;
+		$tags = [];
+		if (isset($post['priority']) && $post['priority'] !== null && $post['priority'] !== "") {
+			$priority = $post['priority'];
+		}
+		if ( isset($post['tags']) && is_array($post['tags']) && count($post['tags']) > 0 ) {
+			$tags = $post['tags'];
+		}
+		return [$priority, $tags];
+	}
 }

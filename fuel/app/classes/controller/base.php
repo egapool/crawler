@@ -2,12 +2,24 @@
 
 class Controller_Base extends Controller_Hybrid
 {
-	public $site_id = 1;
+	public $user_id = 1;
 	public $sleep = 0.5; // sec
 	public $css = "";
 	public $js = "";
+
 	public function before()
 	{
+		$session = Session::instance();
+
+		$siteUrl = Input::get('site');
+		if ( !is_null($siteUrl) ) {
+			$site = Model_Site::fetchSiteByUrl($siteUrl);
+			if ( !is_null($site) ) {
+				Session::set('site', $site);
+			}
+		}
+		$this->site = Session::get('site');
+
 		$this->template = "common/template";
 		parent::before();
 		$this->css .=  Asset::css("style.css");

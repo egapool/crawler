@@ -1,6 +1,18 @@
 var App = {};
 App.WebAPI = App.Template = App.Util = {};
 
+function myAjax(url,data) {
+   var defer = $.Deferred();
+   $.ajax({
+          url:url,
+          data:data,
+      }).done(function(res){
+          defer.resolve(res);
+      });
+   return defer.promise();
+}
+
+
 $(function(){
   var data = {};
   data.tags = [];
@@ -10,7 +22,7 @@ $(function(){
     $('#search .priority .search-post').removeClass('selected');
     $(this).addClass('selected');
     $(this).prevAll().addClass('selected');
-    console.log(data);
+    // console.log(data);
     App.WebAPI.searchPage(data);
   });
 
@@ -25,8 +37,17 @@ $(function(){
     for (i=0;i<data.tags.length;i++){
       $("[data-tag="+data.tags[i]+"]").addClass('selected');
     }
-    console.log(tagNum,data.tags);
+    // console.log(tagNum,data.tags);
     App.WebAPI.searchPage(data);
+  });
+
+  $('#go').click(function(){
+      // DOM入れ替え
+      $('#result-table').html('クローリング中だよ');
+      // start crawle
+      App.WebAPI.goCrawle(data);
+      // dom 入れ替え
+    // console.log(data);
   });
 });
 
@@ -48,6 +69,19 @@ App.WebAPI.searchPage = function(data){
     }
   }).fail(function( msg){
     console.log(mas);
+  });
+};
+
+App.WebAPI.goCrawle = function(data){
+  $.ajax({
+    type: "POST",
+    url: "/api/crawle",
+    dataType: "json",
+    data: data
+  }).done(function( msg ) {
+    console.log(msg);
+  }).fail(function( msg){
+    console.log(msg);
   });
 };
 

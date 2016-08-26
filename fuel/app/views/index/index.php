@@ -15,17 +15,20 @@
 	</div>
 	<div id="pages">
 		<p class="pages-info">調査件数：<span class="page-count"><?php echo $count; ?></span>件 / 終了予定は <span class="end-time"><?php echo $endTime;?></span> です</p>
-		<table>
-			<thead>
-				<tr><th>title</th><th>url</th><th>優先度</th></tr>
-			</thead>
-			<tbody>
-			<?php foreach ( $pages as $page ): ?>
-			<tr>
-				<td><?php echo $page['title'] ?></td><td><?php echo $site['url'].$page['url'] ?></td><td><?php echo $page['priority']?></td>
-			</tr>
-			<?php endforeach; ?>
-			</tbody>
-		</table>
+		<p id="go">ツアーに出る</p>
+		<div id="result-table">
+			<table>
+				<thead>
+					<tr><th>title</th><th>url</th><th>優先度</th></tr>
+				</thead>
+				<tbody>
+				<?php foreach ( $pages as $page ): ?>
+				<tr>
+					<td><?php echo $page['title'] ?></td><td><?php echo $site['url'].$page['url'] ?></td><td><?php echo $page['priority']?></td>
+				</tr>
+				<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </div>
