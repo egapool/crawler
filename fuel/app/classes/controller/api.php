@@ -35,7 +35,7 @@ class Controller_Api extends Controller_Base
 			$resp = \DB::insert('histories')->set([
 				'site_id' 		=> $this->site['id'],
 				'user_id' 		=> $this->user_id,
-				'conditions' 	=> json_encode(['priority'=>$priority,'tags'=>$tags]),
+				'conditions' 	=> json_encode(['priority'=>$priority,'tags'=>$tags,'freeWord'=>$freeWord]),
 				'count' 		=> count($pages),
 				'start_at' 		=> date('Y-m-d H:i:s'),
 			])->execute();

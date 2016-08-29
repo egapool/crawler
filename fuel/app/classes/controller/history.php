@@ -17,10 +17,14 @@ class Controller_History extends Controller_Base
     public function action_detail($history_id)
     {
         $logs = [];
+		$v['history'] = Service_History::getHistory($this->site['id'],$history_id);
+		if ( is_null($v['history']) ) {
+			return new HttpNotFoundException();
+		}
         $data = Model_Log::fetchByHistoryId($history_id);
-        foreach ( $data as $key => $v ) {
-            $v['url1'] = $this->site['url'].$v['url1'];
-            $logs[$key] = $v;
+        foreach ( $data as $key => $value ) {
+            $value['url1'] = $this->site['url'].$value['url1'];
+            $logs[$key] = $value;
         }
         $v['logs'] = $logs;
         $v['site'] = $this->site;

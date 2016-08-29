@@ -7,12 +7,30 @@
     <table class="table">
         <thead>
             <tr>
+                <th></th>
+                <th>サイト</th>
+                <th>プライオリティ</th>
+                <th>タグ</th>
+                <th>絞込み</th>
+                <th>総件数</th>
+                <th>開始時刻</th>
+                <th>終了時刻</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php echo View::forge('history/_history_line',['v'=>$history]); ?>
+        </tbody>
+    </table>
+    <p><a href="/history">一覧に戻る</a></p>
+    <table class="table">
+        <thead>
+            <tr>
                 <th>デバイス</th>
-                <th>url</th>
+                <th>url(1回目)</th>
                 <th>ステータス</th>
-                <th>url</th>
+                <th>url(2回目)</th>
                 <th>ステータス</th>
-                <th>url</th>
+                <th>url(3回目)</th>
                 <th>ステータス</th>
                 <th>title</th>
                 <th>h1</th>
@@ -43,7 +61,7 @@
                 <td><?php echo $v['canonical']; ?></td>
                 <td><?php echo $v['next']; ?></td>
                 <td><?php echo $v['prev']; ?></td>
-                <td><?php echo $v['created_at']; ?></td>
+                <td><?php echo date('m/d H:i',strtotime($v['created_at'])); ?></td>
             </tr>
         <?php endforeach; ?>
         </tbody>

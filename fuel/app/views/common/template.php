@@ -11,7 +11,7 @@
 		<div id="side" class="left">
 			<ul>
 				<?php foreach ( $sites as $site ): ?>
-				<li><a href="/?<?php echo $site['url']; ?>"><?php echo strtoupper(str_replace(["http://","https://"],"",$site['url'])); ?></a></li>
+				<li><a href="/?site=<?php echo $site['url']; ?>"><?php echo strtoupper(str_replace(["http://","https://"],"",$site['url'])); ?></a></li>
 				<?php endforeach; ?>
 			</ul>
 		</div>

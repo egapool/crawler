@@ -14,26 +14,15 @@
                 <th>サイト</th>
                 <th>プライオリティ</th>
                 <th>タグ</th>
+                <th>絞込み</th>
                 <th>開始時刻</th>
                 <th>終了時刻</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ( $list as $v ): ?>
-            <tr>
-                <td><a class="btn btn-blue" href="/history/<?php echo $v['id']; ?>">詳細</a></td>
-                <td><?php echo $v['site_name']; ?></td>
-                <td><?php echo is_null($v['conditions']['priority']) ? "ALL" : $v['conditions']['priority']."以上"; ?></td>
-                <td>
-                <?php foreach ( $v['conditions']['tags'] as $tag ): ?>
-                    <span class="label"><?php echo $tag; ?></span>
-                <?php endforeach; ?>
-                </td>
-                <td><?php echo $v['count']; ?></td>
-                <td><?php echo $v['start_at']; ?></td>
-                <td><?php echo $v['finish_at']; ?></td>
-            </tr>
-        <?php endforeach; ?>
+            <?php echo View::forge('history/_history_line',['v'=>$v]); ?>
+            <?php endforeach; ?>
         </tbody>
     </table>
     <?php endif; ?>
