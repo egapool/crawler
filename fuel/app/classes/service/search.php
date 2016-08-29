@@ -46,7 +46,7 @@ class Service_Search
 		$sql .= $priSql . PHP_EOL;
 		$sql .= $wordSql . PHP_EOL;
 
-		return DB::query($sql)->parameters($params)->execute()->as_array();
+		return DB::query($sql)->parameters($params)->/*cached(60*60*24)->*/execute()->as_array();
 	}
 
 	/**

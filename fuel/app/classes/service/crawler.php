@@ -66,7 +66,7 @@ class Service_Crawler
 				'created_at' => date('Y-m-d H:i:s')
 			];
 			Service_Responselogger::logging($data);
-			usleep(300000);
+			usleep(100000);
 		}
 		return $result;
 	}

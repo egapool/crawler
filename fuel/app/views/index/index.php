@@ -32,7 +32,7 @@
 				<tr>
 					<td><?php echo $page['title'] ?></td>
 					<td><?php echo $site['url'].$page['url'] ?></td>
-					<td style="color:#dac41f;"><?php for($i=0;$i<$page['priority'];$i++): ?>★<?php endfor; ?></td>
+					<td class="priority-stars-<?php echo $page['priority']; ?>"></td>
 				</tr>
 				<?php endforeach; ?>
 				</tbody>

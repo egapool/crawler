@@ -152,3 +152,8 @@ div#siteInfo {
 	width: 50%;
 	margin: 5px 0px;
 }
+.priority-stars-1:after {color:#dac41f;content:"★";}
+.priority-stars-2:after {color:#dac41f;content:"★★";}
+.priority-stars-3:after {color:#dac41f;content:"★★★";}
+.priority-stars-4:after {color:#dac41f;content:"★★★★";}
+.priority-stars-5:after {color:#dac41f;content:"★★★★★";}

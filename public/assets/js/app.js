@@ -97,7 +97,7 @@ App.WebAPI.goCrawle = function(data){
 };
 
 App.Template.pageLine = (function(){/*
-<tr><td>{{title}}</td><td>{{url}}</td><td>{{priority}}</td></tr>
+<tr><td>{{title}}</td><td>{{url}}</td><td class="priority-stars-{{priority}}"></td></tr>
 */}).toString();
 
 App.Util.tempReplace = function(template,replacements){

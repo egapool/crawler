@@ -33,6 +33,7 @@ class Controller_Base extends Controller_Hybrid
 
 		$this->template->set_safe('css', $this->css);
 		$this->template->set_safe('js', $this->js);
+		$this->template->set_safe('sites', Model_Site::fetchAllSite());
 
 		return $response;
 	}
