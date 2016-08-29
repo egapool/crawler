@@ -4,8 +4,9 @@ class Controller_Index extends Controller_Base
 {
 	public function action_index()
 	{
+		$limit = 1000;
 		$v['site']  = $this->site;
-		$v['pages'] = Model_Page::fetchPages($this->site['id']);
+		$v['pages'] = Model_Page::fetchPages($this->site['id'],$limit);
 		$v['tags']  = Model_Tag::fetchTags($this->site['id']);
 		$v['count'] = count($v['pages']);
 		$sec = floor($v['count'] * ($this->sleep) * 1.05);

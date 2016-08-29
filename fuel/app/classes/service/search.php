@@ -2,12 +2,13 @@
 
 class Service_Search
 {
-	public static function getPages($site_id,$priority = null,$tags = [],$freeWord= [])
+	public static function getPages($site_id,$priority = null,$tags = [],$freeWord= [],$limit = null)
 	{
 		$params = ['site_id'=>$site_id];
 
 		$priSql = "";
 		$wordSql = "";
+		$limitSql = "";
 		if ( !is_null($priority) ) {
 			$params += ['priority' => $priority];
 			$priSql = "AND priority <= :priority";
@@ -17,6 +18,11 @@ class Service_Search
 			foreach ( $freeWord as $word ) {
 				$wordSql .= " AND url like '%".$word."%'";
 			}
+		}
+
+		if ( !is_null($limit) ) {
+			$params += ['limit' => $limit];
+			$limitSql = "LIMIT :limit";
 		}
 
 		$tagSql = "";
@@ -45,6 +51,7 @@ class Service_Search
 		$sql .= "    site_id = :site_id" . PHP_EOL;
 		$sql .= $priSql . PHP_EOL;
 		$sql .= $wordSql . PHP_EOL;
+		$sql .= $limitSql . PHP_EOL;
 
 		return DB::query($sql)->parameters($params)->/*cached(60*60*24)->*/execute()->as_array();
 	}

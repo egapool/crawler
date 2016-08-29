@@ -36,7 +36,7 @@
                 <th>h1</th>
                 <th>keywords</th>
                 <th>description</th>
-                <th>noindex</th>
+                <th>robots</th>
                 <th>canonical</th>
                 <th>next</th>
                 <th>prev</th>
@@ -53,14 +53,14 @@
                 <td><?php echo $v['status_code2']; ?></td>
                 <td><a href="<?php echo $v['url3']; ?>" target="_blank"><?php echo $v['url3']; ?></a></td>
                 <td><?php echo $v['status_code3']; ?></td>
-                <td><?php echo $v['title']; ?></td>
-                <td><?php echo $v['h1']; ?></td>
-                <td><?php echo $v['keywords']; ?></td>
-                <td><?php echo $v['description']; ?></td>
-                <td><?php echo $v['noindex']; ?></td>
-                <td><?php echo $v['canonical']; ?></td>
-                <td><?php echo $v['next']; ?></td>
-                <td><?php echo $v['prev']; ?></td>
+                <td><?php echo $v['title'] != "" ? $v['title'] : "-"; ?></td>
+                <td><?php echo $v['h1'] != "" ? $v['h1'] : "-"; ?></td>
+                <td><?php echo $v['keywords'] != "" ? $v['keywords'] : "-"; ?></td>
+                <td><?php echo $v['description'] != "" ? $v['description'] : "-"; ?></td>
+                <td><?php echo $v['robots'] != "" ? $v['robots'] : "-"; ?></td>
+                <td><?php echo $v['canonical'] != "" ? $v['canonical'] : "-"; ?></td>
+                <td><?php echo $v['next'] != "" ? $v['next'] : "-"; ?></td>
+                <td><?php echo $v['prev'] != "" ? $v['prev'] : "-"; ?></td>
                 <td><?php echo date('m/d H:i',strtotime($v['created_at'])); ?></td>
             </tr>
         <?php endforeach; ?>

@@ -1,5 +1,8 @@
 <?php
 
+use Box\Spout\Reader\ReaderFactory;
+use Box\Spout\Common\Type;
+
 class Controller_Pageinseart extends Controller_Base
 {
     public $columns = [
@@ -12,9 +15,9 @@ class Controller_Pageinseart extends Controller_Base
 	public function action_index()
 	{
         $v = [];
-        $v['sites'] = Model_Site::fetchAllSite();
+        $v['sites'] = \Model_Site::fetchAllSite();
 
-        $post = Input::post();
+        $post = \Input::post();
         if ( !empty($post) && $post['action'] === 'send') {
             ini_set('memory_limit', -1);
             $site_id = $post['site_id'];
@@ -23,12 +26,29 @@ class Controller_Pageinseart extends Controller_Base
             $dstName = basename($file['name']);
             $dstPath = $uploadDir."/".$dstName;
             move_uploaded_file($file['tmp_name'], $dstPath);
-            $pages = Service_Excel::dump($dstPath);
+            $reader = ReaderFactory::create(Type::XLSX); // for XLSX files
+            $reader->open($dstPath);
 
-            Service_Pageregister::pagesInseart($site_id,$pages);
-            Response::redirect('/', 'location');
+            try{
+                //\DB::start_transaction();
+
+                foreach ($reader->getSheetIterator() as $sheet) {
+                    foreach ($sheet->getRowIterator()  as $key => $row) {
+                        // 1行目はスルー
+                        if ($key === 1 ) continue;
+                        \Service_Pageregister::pagesInseart($site_id,$row);
+                        var_dump($key,$row);
+                    }
+                }
+                $reader->close();
+                //\DB::commit_transaction();
+                \Response::redirect('/', 'location');
+            } catch(Exception $e){
+                //\DB::rollback_transaction();
+            }
+            //$pages = \Service_Excel::dump($dstPath);
         }
 
-        $this->template->content = View::forge("pageinseart/index",$v,FALSE);
+        $this->template->content = \View::forge("pageinseart/index",$v,FALSE);
     }
 }

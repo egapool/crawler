@@ -16,7 +16,7 @@ class Service_Responselogger
             "h1"            => isset($data['h1']) ? $data['h1'] : "",
             "keywords"      => isset($data['keywords']) ? $data['keywords'] : "",
             "description"   => isset($data['description']) ? $data['description'] : "",
-            "noindex"       => isset($data['noindex']) ? $data['noindex'] : "",
+            "robots"       => isset($data['robots']) ? $data['robots'] : "",
             "canonical"     => isset($data['canonical']) ? $data['canonical'] : "",
             "next"          => isset($data['next']) ? $data['next'] : "",
             "prev"          => isset($data['prev']) ? $data['prev'] : "",

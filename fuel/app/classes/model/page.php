@@ -2,9 +2,9 @@
 
 class Model_Page extends \Model
 {
-	static public function fetchPages($site_id)
+	static public function fetchPages($site_id,$limit)
 	{
-		$sql = "SELECT * FROM pages WHERE site_id = :site_id LIMIT 100";
+		$sql = "SELECT * FROM pages WHERE site_id = :site_id LIMIT {$limit}";
 		return DB::query($sql)->parameters(['site_id'=>$site_id])->execute()->as_array();
 	}
 

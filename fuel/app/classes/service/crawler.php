@@ -55,18 +55,38 @@ class Service_Crawler
 					$res[($key + 1)] = ['url' => $location];
 				}
 			}
-			$data = [
-				'history_id' => $history_id,
-				'url1' => isset($res[0]['url']) ? $res[0]['url'] : "",
-				'status_code1' => isset($res[0]['statusCode']) ? $res[0]['statusCode'] : "",
-				'url2' => isset($res[1]['url']) ? $res[1]['url'] : "",
-				'status_code2' => isset($res[1]['statusCode']) ? $res[1]['statusCode'] : "",
-				'url3' => isset($res[2]['url']) ? $res[2]['url'] : "",
-				'status_code3' => isset($res[2]['statusCode']) ? $res[2]['statusCode'] : "",
-				'created_at' => date('Y-m-d H:i:s')
+
+			// scrape
+			$scraper = new Utils_Scrape($responseBody);
+			$title 		= $scraper->getTitle();
+			$h1 		= $scraper->getH1();
+			$keywords 	= $scraper->getMeta('Keywords');
+			$description = $scraper->getMeta('description');
+			$robots 	= $scraper->getMeta('robots');
+			$next 		= $scraper->getLink('next');
+			$prev 		= $scraper->getLink('prev');
+			$canonical 	= $scraper->getLink('canonical');
+
+			$log = [
+				'history_id' 	=> $history_id,
+				'url1' 			=> isset($res[0]['url']) ? $res[0]['url'] : "",
+				'status_code1' 	=> isset($res[0]['statusCode']) ? $res[0]['statusCode'] : "",
+				'url2' 			=> isset($res[1]['url']) ? $res[1]['url'] : "",
+				'status_code2' 	=> isset($res[1]['statusCode']) ? $res[1]['statusCode'] : "",
+				'url3' 			=> isset($res[2]['url']) ? $res[2]['url'] : "",
+				'status_code3' 	=> isset($res[2]['statusCode']) ? $res[2]['statusCode'] : "",
+				'created_at' 	=> date('Y-m-d H:i:s'),
+				'title' 		=> $title,
+				'h1' 			=> $h1,
+				'keywords' 		=> $keywords,
+				'description' 	=> $description,
+				'robots' 		=> $robots,
+				'next' 			=> $next,
+				'prev' 			=> $prev,
+				'canonical' 	=> $canonical,
 			];
-			Service_Responselogger::logging($data);
-			usleep(100000);
+			Service_Responselogger::logging($log);
+			usleep(50000);
 		}
 		return $result;
 	}

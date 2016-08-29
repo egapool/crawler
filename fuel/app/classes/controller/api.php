@@ -4,6 +4,7 @@ class Controller_Api extends Controller_Base
 {
 	public function post_search_page()
 	{
+		$limit = 1000;
 		$res = [
 			"ok" => true,
 		];

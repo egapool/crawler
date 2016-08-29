@@ -17,7 +17,8 @@
         "monolog/monolog": "1.5.*",
         "phpseclib/phpseclib": "2.0.0",
         "michelf/php-markdown": "1.4.0",
-        "phpoffice/phpexcel": "^1.8"
+        "phpoffice/phpexcel": "^1.8",
+        "box/spout": "^2.5"
     },
     "require-dev": {
         "fuel/docs": "1.8.*"
