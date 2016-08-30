@@ -3,7 +3,7 @@
 use Box\Spout\Reader\ReaderFactory;
 use Box\Spout\Common\Type;
 
-class Controller_Pageinseart extends Controller_Base
+class Controller_Pageinsert extends Controller_Base
 {
     public $columns = [
         "A" => "title",
