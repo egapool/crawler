@@ -46,7 +46,7 @@ class Controller_Api extends Controller_Base
 		foreach ( $pages as $key => $page ) {
 			$urls[] = $page['url'];
 		}
-		// var_dump($pages);die;
+
 		$cr = new Service_Crawler();
 		$cr->setBasic($this->site['basic_user'],$this->site['basic_paswd'])->setBaseUrl($this->site['url']);
 		$result = $cr->crawle($history_id,$urls);
@@ -61,6 +61,33 @@ class Controller_Api extends Controller_Base
 			"history_id" => $history_id,
 		];
 		return $this->response($res);
+	}
 
+	public function post_download_result()
+	{
+		// すでにfileあれば返す
+		$post = Input::post();
+		$history_id = $post['history_id'];
+		$filePath = APPPATH."/tmp/logs_{$history_id}.xlsx";
+
+		$logs = \DB::select('url1','status_code1','url2','status_code2','url3','status_code3','title','h1','keywords','description','robots','canonical','next','prev')->from('logs')->where('history_id','=',$history_id)->execute()->as_array();
+
+		$writer = Box\Spout\Writer\WriterFactory::create(Box\Spout\Common\Type::XLSX);
+		$writer->openToFile($filePath);
+		$writer->addRow(['url1','status_code1','url2','status_code2','url3','status_code3','title','h1','keywords','description','robots','canonical','next','prev']);
+		$writer->addRows($logs);
+		$writer->close();
+
+		return $this->response(['ok'=>true,'history_id'=>$history_id]);
 	}
 }
+
+
+
+
+
+
+
+
+
+

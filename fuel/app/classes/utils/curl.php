@@ -237,7 +237,7 @@ class Utils_Curl
 	private function curl_reset(&$ch)
 	{
 		if ( function_exists('curl_reset') ) {
-			curl_seset($ch);
+			curl_reset($ch);
 		} else {
 			 $ch = curl_init();
 		}

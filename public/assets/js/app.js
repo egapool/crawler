@@ -68,7 +68,6 @@ $(function(){
           $('.result-records tr').hide();
           $('.result-records tr.status-'+status).show();
       }
-      console.log(status);
   });
 });
 

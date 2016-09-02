@@ -1,4 +1,7 @@
 <div id="main" class="left">
+    <?php if ($result != "" ): ?>
+        <p><?php echo $result; ?></p>
+    <?php endif; ?>
     <h2>ページ登録</h2>
     <form class="" action="" method="post" enctype="multipart/form-data">
         <div class="">

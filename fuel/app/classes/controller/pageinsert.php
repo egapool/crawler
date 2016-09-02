@@ -16,6 +16,7 @@ class Controller_Pageinsert extends Controller_Base
 	{
         $v = [];
         $v['sites'] = \Model_Site::fetchAllSite();
+        $v['result'] = "";
 
         $post = \Input::post();
         if ( !empty($post) && $post['action'] === 'send') {
@@ -37,12 +38,12 @@ class Controller_Pageinsert extends Controller_Base
                         // 1行目はスルー
                         if ($key === 1 ) continue;
                         \Service_Pageregister::pagesInseart($site_id,$row);
-                        var_dump($key,$row);
                     }
                 }
                 $reader->close();
                 //\DB::commit_transaction();
                 \Response::redirect('/', 'location');
+                $v['result'] = "登録した！";
             } catch(Exception $e){
                 //\DB::rollback_transaction();
             }

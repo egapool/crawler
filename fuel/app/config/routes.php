@@ -6,5 +6,6 @@ return array(
 	'hello(/:name)?' => array('welcome/hello', 'name' => 'hello'),
 	'history' => array('history'),
 	'history/:id' => 'history/detail/$1',
+	'download/:id' => 'download/index/$1',
 	'api/search_page' => array('api/search_page'),
 );

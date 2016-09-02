@@ -1,9 +1,13 @@
 <div id="main" class="left history-detail">
+<?php if ( !isset($site)): ?>
+    ←サイトを選んでね！
+<?php else: ?>
     <div id="siteInfo">
 		<span class="name"><?php echo $site['name'] ?></span>
 		<span class="url"><?php echo $site['url'] ?></span>
     </div>
     <h1>クローリング詳細</h1>
+    <p><a href="/download/<?php echo $history['id'] ?>">Excelダウンロード</a></p>
     <table class="table">
         <thead>
             <tr>
@@ -71,4 +75,5 @@
         <?php endforeach; ?>
         </tbody>
     </table>
+<?php endif; ?>
 </div>

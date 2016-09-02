@@ -4,6 +4,7 @@ class Controller_History extends Controller_Base
 {
 	public function action_index()
 	{
+        if ( is_null($this->site) ) Response::redirect('/');
         $v = [];
         $list = Service_History::getAllHistories($this->site['id']);
         $v['list'] = $list;
@@ -16,6 +17,7 @@ class Controller_History extends Controller_Base
 
     public function action_detail($history_id)
     {
+        if ( is_null($this->site) ) Response::redirect('/');
         $logs = [];
 		$v['history'] = Service_History::getHistory($this->site['id'],$history_id);
 		if ( is_null($v['history']) ) {
@@ -30,4 +32,5 @@ class Controller_History extends Controller_Base
         $v['site'] = $this->site;
         $this->template->content = View::forge("history/detail", $v, FALSE);
     }
+
 }
