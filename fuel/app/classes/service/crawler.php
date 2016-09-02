@@ -86,7 +86,7 @@ class Service_Crawler
 				'canonical' 	=> $canonical,
 			];
 			Service_Responselogger::logging($log);
-			usleep(50000);
+			// usleep(50000);
 		}
 		return $result;
 	}

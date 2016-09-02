@@ -22,6 +22,11 @@
         </tbody>
     </table>
     <p><a href="/history">一覧に戻る</a></p>
+    <ul id="fillter-status">
+        <li class="filler-status-all" data-status="all">ALL</li>
+        <li class="filler-status-404" data-status="404">404</li>
+        <li class="filler-status-500" data-status="500">500</li>
+    </ul>
     <table class="table">
         <thead>
             <tr>
@@ -43,9 +48,9 @@
                 <th>日時</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="result-records">
             <?php foreach ( $logs as $v ): ?>
-            <tr>
+            <tr class="status-<?php echo $v['status_code1']; ?>">
                 <td>PC</td>
                 <td><a href="<?php echo $v['url1']; ?>" target="_blank"><?php echo $v['url1']; ?></a></td>
                 <td><?php echo $v['status_code1']; ?></td>

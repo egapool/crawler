@@ -37,7 +37,7 @@ class Utils_Scrape
 
     public function getLink($rel)
     {
-        $query = '//link[@ref="'.$rel.'"]';
+        $query = '//link[@rel="'.$rel.'"]';
         $x = $this->xpath->query($query)->item(0);
         if ( is_null($x) ) return "";
         return $x->getAttribute('href');

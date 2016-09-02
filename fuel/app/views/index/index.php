@@ -2,6 +2,7 @@
 	<?php if ( !isset($site)): ?>
         ←サイトを選んでね！
     <?php else: ?>
+	<a href="/pageinsert">ページ登録</a> <a href="/history">結果一覧</a>
 	<div id="siteInfo">
 		<span class="name"><?php echo $site['name'] ?></span>
 		<span class="url"><?php echo $site['url'] ?></span>
@@ -25,13 +26,17 @@
 		<div id="result-table">
 			<table>
 				<thead>
-					<tr><th>title</th><th>url</th><th>優先度</th></tr>
+					<tr>
+						<th class="page-list-title">title</th>
+						<th class="page-list-url">url</th>
+						<th class="page-list-priority">優先度</th>
+					</tr>
 				</thead>
 				<tbody>
 				<?php foreach ( $pages as $page ): ?>
 				<tr>
 					<td><?php echo $page['title'] ?></td>
-					<td><?php echo $site['url'].$page['url'] ?></td>
+					<td><a href="<?php echo $site['url'].$page['url']; ?>" target="_blank"><?php echo $page['url'] ?></a></td>
 					<td class="priority-stars-<?php echo $page['priority']; ?>"></td>
 				</tr>
 				<?php endforeach; ?>

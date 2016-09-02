@@ -95,25 +95,45 @@ body {
     width: 100%;
 	padding-left: 13%;
 }
-
+#search .priority {
+	margin: 0px 0px 10px 0px;
+}
 #search .priority .search-post {
 	padding: 2px 16px;
 	cursor: pointer;
 }
 #search .priority .search-post:hover {
-	font-weight: bold;
+	color: #ccc;
 }
 #search .priority .search-post.selected {
     background-color: #75c0d2;
 }
-
+#search .priority .search-post:first-child {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+#search .priority .search-post:last-child {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+#search .tags {
+	margin: 0px 0px 10px 0px;
+}
 #search .tags .search-post {
-	padding: 2px 16px;
+	padding: 2px 12px;
 	cursor: pointer;
 }
 #search .tags .search-post.selected {
     background-color: #fdde81;
+	border-radius: 3px;
+}
 
+#search {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 10px;
+    background-color: #fffffb;
+    font-size: 13px;
 }
 
 p#go {
@@ -129,12 +149,24 @@ p#go:hover {
 	font-weight: bold;
 }
 
+#result-table {
+    font-size: 12px;
+}
+#result-table
+#result-table .page-list-title {
+	width:230px;
+}
+#result-table .page-list-url {
+    width: 300px;
+}
 div#siteInfo {
     background-color: #4d394b;
     margin: 0 0 10px 0;
     padding: 5px;
     color: #fff;
     border-radius: 3px;
+	font-size: 20px;
+	font-weight: bold;
 }
 .table tr td {
 	border:1px solid #ccc;

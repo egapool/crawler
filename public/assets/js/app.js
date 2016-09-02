@@ -59,6 +59,17 @@ $(function(){
       // dom 入れ替え
     // console.log(data);
   });
+
+  $('#fillter-status li').click(function(e){
+      var status = $(this).data('status');
+      if ( status === "all" ) {
+          $('.result-records tr').show();
+      } else {
+          $('.result-records tr').hide();
+          $('.result-records tr.status-'+status).show();
+      }
+      console.log(status);
+  });
 });
 
 App.WebAPI.searchPage = function(data){
