@@ -19,6 +19,7 @@
                 <th>絞込み</th>
                 <th>件数</th>
                 <th>ツアーURL</th>
+                <th>jenkins shell</th>
             </tr>
         </thead>
         <tbody>
@@ -37,6 +38,7 @@
                 <td style="font-style:italic;"><?php foreach($v['conditions']['freeWord'] as $word): ?>"<?php echo $word ?>"<?php endforeach; ?></td>
                 <td><?php echo $v['count']; ?></td>
                 <td><?php echo Uri::base()."tour/enjoy/".$v['enjoykey']; ?></td>
+                <td><input class="code" onclick="this.select();" type="input" value="curl <?php echo Uri::base()."tour/enjoy/".$v['enjoykey']; ?>"/></td>
             </tr>
             <?php endforeach; ?>
         </tbody>

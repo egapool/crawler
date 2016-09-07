@@ -202,3 +202,9 @@ div#siteInfo {
 .priority-stars-3:after {color:#fde426;content:"★★★";}
 .priority-stars-4:after {color:#fde426;content:"★★★★";}
 .priority-stars-5:after {color:#fde426;content:"★★★★★";}
+
+.code {
+    padding: 0 6px;
+    width: 460px;
+    font-style: italic;
+}
