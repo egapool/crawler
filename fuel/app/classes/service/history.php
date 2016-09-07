@@ -16,6 +16,19 @@ class Service_History
         return $data;
     }
 
+    static public function getHistoryConditions($site_id,$history_id)
+    {
+        $sql = "SELECT" . PHP_EOL;
+        $sql .= "	h.conditions" . PHP_EOL;
+        $sql .= "FROM" . PHP_EOL;
+        $sql .= "	`histories` AS h" . PHP_EOL;
+        $sql .= "INNER JOIN sites AS s ON h.site_id = s.id" . PHP_EOL;
+        $sql .= "WHERE" . PHP_EOL;
+        $sql .= "	h.id = :history_id;" . PHP_EOL;
+        $data = \DB::query($sql)->parameters(['history_id'=>$history_id])->execute()->current();
+        return json_decode($data['conditions'],true);
+    }
+
     static public function getHistory($site_id,$history_id)
     {
         $sql = "SELECT" . PHP_EOL;

@@ -9,13 +9,7 @@ class Controller_Api extends Controller_Base
 			"ok" => true,
 		];
 		$post = Input::post();
-		$priority = null;
-		$tags = [];
-		$freeWord = [];
-
-		list($priority,$tags,$freeWord) = Service_Search::filterRequest($post);
-
-		$res['page'] = Service_Search::getPages($this->site['id'],$priority,$tags,$freeWord);
+		$res['page'] = Service_Search::searchPages($this->site['id'],$post);
 
 		$sec = floor(count($res['page']) * ($this->sleep) * 1.05);
 		$res['endTime'] = date('m月d日 H時i分',strtotime("+{$sec} second"));
@@ -48,7 +42,9 @@ class Controller_Api extends Controller_Base
 		}
 
 		$cr = new Service_Crawler();
-		$cr->setBasic($this->site['basic_user'],$this->site['basic_paswd'])->setBaseUrl($this->site['url']);
+		if ( $this->site['basic_user'] != "" ) {
+            $cr->setBasic($this->site['basic_user'],$this->site['basic_paswd'])->setBaseUrl($this->site['url']);
+        }
 		$result = $cr->crawle($history_id,$urls);
 
 		\DB::update('histories')
@@ -81,13 +77,3 @@ class Controller_Api extends Controller_Base
 		return $this->response(['ok'=>true,'history_id'=>$history_id]);
 	}
 }
-
-
-
-
-
-
-
-
-
-

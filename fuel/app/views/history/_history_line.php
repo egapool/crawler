@@ -11,4 +11,5 @@
     <td><?php echo $v['count']; ?></td>
     <td><?php echo $v['start_at']; ?></td>
     <td><?php echo $v['finish_at']; ?></td>
+    <td><a href="/tour/add/<?php echo $v['id']; ?>">ツアーを組む</a></td>
 </tr>

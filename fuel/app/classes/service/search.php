@@ -2,6 +2,15 @@
 
 class Service_Search
 {
+	public static function searchPages($site_id,$conditions)
+	{
+		$priority = null;
+		$tags = [];
+		$freeWord = [];
+		list($priority,$tags,$freeWord) = self::filterRequest($conditions);
+		return self::getPages($site_id,$priority,$tags,$freeWord);
+	}
+
 	public static function getPages($site_id,$priority = null,$tags = [],$freeWord= [],$limit = null)
 	{
 		$params = ['site_id'=>$site_id];
@@ -58,23 +67,23 @@ class Service_Search
 
 	/**
 	 * ページサーチのPOSTリクエストをサーバーで扱う形にフィルター
-	 * @param  array $post input::post
+	 * @param  array $conditions input::post
 	 * @return array priority and tags
 	 * @author egami
 	 */
-	public static function filterRequest($post)
+	public static function filterRequest($conditions)
 	{
 		$priority = null;
 		$tags = [];
 		$freeWord = [];
-		if (isset($post['priority']) && $post['priority'] !== null && $post['priority'] !== "") {
-			$priority = $post['priority'];
+		if (isset($conditions['priority']) && $conditions['priority'] !== null && $conditions['priority'] !== "") {
+			$priority = $conditions['priority'];
 		}
-		if ( isset($post['tags']) && is_array($post['tags']) && count($post['tags']) > 0 ) {
-			$tags = $post['tags'];
+		if ( isset($conditions['tags']) && is_array($conditions['tags']) && count($conditions['tags']) > 0 ) {
+			$tags = $conditions['tags'];
 		}
-		if ( isset($post['freeWord']) && is_array($post['freeWord']) && count($post['freeWord']) > 0 ) {
-			$freeWord = $post['freeWord'];
+		if ( isset($conditions['freeWord']) && is_array($conditions['freeWord']) && count($conditions['freeWord']) > 0 ) {
+			$freeWord = $conditions['freeWord'];
 		}
 		return [$priority, $tags,$freeWord];
 	}

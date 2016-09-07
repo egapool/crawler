@@ -23,7 +23,7 @@ return array(
 	 *
 	 * Set this to null to have it automatically detected.
 	 */
-	// 'base_url'  => null,
+	'base_url'				=> 'http://' . Input::server('HTTP_HOST') . '/',
 
 	/**
 	 * url_suffix - Any suffix that needs to be added to
@@ -77,9 +77,8 @@ return array(
 	/**
 	 * Localization & internationalization settings
 	 */
-	// 'language'           => 'en', // Default language
-	// 'language_fallback'  => 'en', // Fallback language when file isn't available for default language
-	// 'locale'             => 'en_US', // PHP set_locale() setting, null to not set
+	'language'				=> 'ja',
+ 	'locale'				=> 'ja_JP.utf8',
 
 	/**
 	 * Internal string encoding charset
@@ -259,7 +258,7 @@ return array(
 	/**************************************************************************/
 	/* Always Load                                                            */
 	/**************************************************************************/
-	// 'always_load'  => array(
+	'always_load'  => array(
 
 		/**
 		 * These packages are loaded on Fuel's startup.
@@ -299,7 +298,9 @@ return array(
 		 * add it like 'session' => 'auth'.
 		 * If you don't want the config in a group use null as groupname.
 		 */
-		// 'config'  => array(),
+		'config'  => array(
+			'const' => true,
+		),
 
 		/**
 		 * Language files to autoload
@@ -310,6 +311,6 @@ return array(
 		 * If you don't want the lang in a group use null as groupname.
 		 */
 		// 'language'  => array(),
-	// ),
+	),
 
 );

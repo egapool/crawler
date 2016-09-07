@@ -176,6 +176,19 @@ div#siteInfo {
 .history-detail .table {
 	font-size:12px;
 }
+.history-detail .status-404 td,
+.history-detail .status-404 td a,
+.history-detail .status-500 td,
+.history-detail .status-500 td a {
+    color: red;
+}
+.history-detail #fillter-status li {
+	display: inline-block;
+    width: 80px;
+    background-color: #f1cbed;
+    text-align: center;
+	cursor: pointer;
+}
 
 .free-word input{
 	padding: 3px 5px;

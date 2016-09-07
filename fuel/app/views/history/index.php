@@ -18,6 +18,7 @@
                 <th>件数</th>
                 <th>開始時刻</th>
                 <th>終了時刻</th>
+                <th>ツアー</th>
             </tr>
         </thead>
         <tbody>
